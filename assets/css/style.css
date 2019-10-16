@@ -1,0 +1,9 @@
+#gameText{
+    display: none;
+}
+
+h1{
+    font-size: 5vw;
+    margin: 0em 0em 1em 0em;
+    text-align: center;
+}
