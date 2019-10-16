@@ -10,8 +10,17 @@ let wrongSet = [""];
 
 document.onkeyup = function (event) {
 
+        //Generates random mystery word from word bank
+        mysteryWordText.textContent = "";
         mysteryWord = wordBank[Math.floor(Math.random() * wordBank.length)];
-        mysteryWordText.textContent = mysteryWord;
+        console.log(mysteryWord);
+
+        //Displays dashes in place of letters
+        for (i = 0; i < mysteryWord.length; i++) {
+                mysteryWordText.append("-");
+        }
+
+        //mysteryWordText.textContent = mysteryWord;
 
         document.onkeyup = function (event) {
 
@@ -24,10 +33,20 @@ document.onkeyup = function (event) {
                 //Check for alphabet input
                 if (alphabet.includes(userInput) === true) {
 
-                        let letterCheck = mysteryWord.search(userInput);
+                        //Searches mystery word for letters incl. repeats
+                        let letterCheck = 0;
+                        for (i = 0; i <= mysteryWord.length; i++) {
+                                if (userInput == mysteryWord[i]) {
+                                        letterCheck++;
+                                        
+                                }
+
+                        }
+
+                        //let letterCheck = mysteryWord.search(userInput);
                         console.log(letterCheck)
 
-                        if (letterCheck < 0){
+                        if (letterCheck <= 0) {
                                 wrongSet.push(userInput);
                                 //Print Wrong Guesses
                                 wrongLetters.textContent = "";
@@ -36,8 +55,8 @@ document.onkeyup = function (event) {
                                         wrongLetters.append(text + " ");
                                 }
 
-                        } else{
-                        
+                        } else if (letterCheck > 0) {
+
                                 correctSet.push(userInput);
 
                                 //Print Correct Guesses
@@ -46,9 +65,14 @@ document.onkeyup = function (event) {
                                         let text = correctSet[i];
                                         correctLetters.append(text + " ");
                                 }
+
+                               
+
+
                         }
 
-                        
+
+
 
                         //winCount++;
                         //totalWins.textContent = winCount;
@@ -60,10 +84,8 @@ document.onkeyup = function (event) {
 
 
 
+
+
         }
+
 }
-
-
-
-
-
