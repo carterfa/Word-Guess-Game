@@ -3,7 +3,20 @@
 }
 
 h1{
-    font-size: 5vw;
+    font-size: 4em;
     margin: 0em 0em 1em 0em;
     text-align: center;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 500px){
+    h1{
+        font-size: 2em;
+        margin: 0em 0em .5em 0em;
+        text-align: center;
+    }
+
+    h2{
+        font-size: 1em;
+    }
 }
