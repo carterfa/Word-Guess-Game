@@ -13,7 +13,7 @@ let mysterySet = [];
 //establishes guesses
 let guessNum = 10;
 
-const gameStart = {
+const game = {
 
         reset: function () {
                 //reset sets
@@ -50,91 +50,85 @@ const gameStart = {
 
 document.onkeyup = function (event) {
 
-        gameStart.reset();
-        
-
-//mysteryWordText.textContent = mysteryWord;
+        game.reset();
 
 
-//user interaction function
-document.onkeyup = function (event) {
+        //mysteryWordText.textContent = mysteryWord;
 
-                        let userInput = event.key.toLowerCase();
-                        const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
-                        //check for win state
-                        if (mysterySet.includes("_") === true) {
-                                //Check for alphabet input
-                                if ((alphabet.includes(userInput) === true) && (guessedSet.includes(userInput) === false)) {
+        //user interaction function
+        document.onkeyup = function (event) {
 
-                                        //Searches mystery word for letters incl. repeats, if found letter adjust mystery set array
-                                        let letterCheck = 0;
-                                        for (i = 0; i <= mysteryWord.length; i++) {
-                                                if (userInput == mysteryWord[i]) {
-                                                        letterCheck++;
-                                                        mysterySet[i] = userInput;
-                                                        //console.log(mysterySet);
-                                                }
+                let userInput = event.key.toLowerCase();
 
-                                        }
 
-                                        //let letterCheck = mysteryWord.search(userInput);
-                                        //console.log(letterCheck)
+                //Check for alphabet input
+                if (userInput.match(/^[a-z]$/) && !guessedSet.includes(userInput)) {
+                        guessNum--;
 
-                                        if (letterCheck <= 0) {
-                                                guessedSet.push(userInput);
-                                                guessNum--;
-                                                //Print Guesses
-                                                guessedLetters.textContent = "";
-                                                for (i = 0; i < guessedSet.length; i++) {
-                                                        let text = guessedSet[i].toUpperCase();
-                                                        guessedLetters.append(text + " ");
-
-                                                }
-
-                                        } else if (letterCheck > 0) {
-
-                                                guessedSet.push(userInput);
-                                                guessNum--;
-
-                                                //Redisplay to include found letters
-                                                mysteryWordText.textContent = "";
-                                                for (i = 0; i < mysterySet.length; i++) {
-                                                        let character = mysterySet[i];
-                                                        mysteryWordText.append(character.toUpperCase() + " ");
-
-                                                }
-
-                                                //Print Correct Guesses
-                                                guessedLetters.textContent = "";
-                                                for (i = 0; i < guessedSet.length; i++) {
-                                                        let text = guessedSet[i].toUpperCase();
-                                                        guessedLetters.append(text + " ");
-                                                }
-
-                                        }
-                                        guessTxt.textContent = guessNum;
-
-                                } else {
-                                        //alert("Not a letter!");
+                        //Searches mystery word for letters incl. repeats, if found letter adjust mystery set array
+                        let letterCheck = false;
+                        for (i = 0; i <= mysteryWord.length; i++) {
+                                if (userInput == mysteryWord[i]) {
+                                        letterCheck = true;
+                                        mysterySet[i] = userInput;
+                                        //console.log(mysterySet);
                                 }
 
+                        }
 
+                        //let letterCheck = mysteryWord.search(userInput);
+                        //console.log(letterCheck)
+
+                        if (!letterCheck) {
+                                guessedSet.push(userInput);
+                                //Print Guesses
+                                guessedLetters.textContent = "";
+                                for (i = 0; i < guessedSet.length; i++) {
+                                        let text = guessedSet[i].toUpperCase();
+                                        guessedLetters.append(text + " ");
+
+                                }
 
                         } else {
+
+                                guessedSet.push(userInput);
+
+                                //Redisplay to include found letters
+                                mysteryWordText.textContent = "";
+                                for (i = 0; i < mysterySet.length; i++) {
+                                        let character = mysterySet[i];
+                                        mysteryWordText.append(character.toUpperCase() + " ");
+
+                                }
+
+                                //Print Correct Guesses
+                                guessedLetters.textContent = "";
+                                for (i = 0; i < guessedSet.length; i++) {
+                                        let text = guessedSet[i].toUpperCase();
+                                        guessedLetters.append(text + " ");
+                                }
+
+                        }
+                        guessTxt.textContent = guessNum;
+
+                        console.log(guessNum)
+
+                        //check for win state
+                        if (!mysterySet.includes("_")) {
                                 winCount++;
                                 totalWins.textContent = winCount;
                                 alert("YOU WIN!");
 
-                                gameStart.reset();
-                        }
-
-                        if (guessNum < 0) {
+                                game.reset();
+                        } else if (guessNum < 0) {
                                 alert("GAME OVER");
 
-                                gameStart.reset();
+                                game.reset();
                         }
-                }
 
+                }
         }
+
+}
 
