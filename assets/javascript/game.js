@@ -6,36 +6,52 @@ const mysteryWordText = document.getElementById('mysteryWordText');
 const totalWins = document.getElementById('totalWins');
 const guessTxt = document.getElementById('guessTxt');
 
-document.onkeyup = function (event) {
-
 //establishes empty sets
 let guessedSet = [];
 let mysterySet = [];
 
-//reset guesses
+//establishes guesses
 let guessNum = 10;
 
-//reset display
-guessedLetters.textContent ="";
-guessTxt.textContent = "10";
+const gameStart = {
 
-//Generates random mystery word from word bank
-mysteryWordText.textContent = "";
-mysteryWord = wordBank[Math.floor(Math.random() * wordBank.length)];
-console.log(mysteryWord);
+        reset: function () {
+                //reset sets
+                guessedSet = [];
+                mysterySet = [];
 
-//Fills array with dashes
-for (i = 0; i < mysteryWord.length; i++) {
-        mysterySet.push("_");
+                //reset guesses
+                guessNum = 10;
+
+                //reset display
+                guessedLetters.textContent = "";
+                guessTxt.textContent = "10";
+
+                //Generates random mystery word from word bank
+                mysteryWordText.textContent = "";
+                mysteryWord = wordBank[Math.floor(Math.random() * wordBank.length)];
+                console.log(mysteryWord);
+
+                //Fills array with dashes
+                for (i = 0; i < mysteryWord.length; i++) {
+                        mysterySet.push("_");
+                }
+
+                //Displays contents of dash array
+                for (i = 0; i < mysterySet.length; i++) {
+                        let character = mysterySet[i];
+                        mysteryWordText.append(character + " ");
+
+
+                }
+
+        }
 }
 
-//Displays contents of dash array
-for (i = 0; i < mysterySet.length; i++) {
-        let character = mysterySet[i];
-        mysteryWordText.append(character+" ");
-}
+document.onkeyup = function (event) {
 
-
+        gameStart.reset();
+        
 
 //mysteryWordText.textContent = mysteryWord;
 
@@ -43,136 +59,82 @@ for (i = 0; i < mysterySet.length; i++) {
 //user interaction function
 document.onkeyup = function (event) {
 
-        let userInput = event.key.toLowerCase();
-        const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+                        let userInput = event.key.toLowerCase();
+                        const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
-        //check for win state
-        if (mysterySet.includes("_") === true) {
-                //Check for alphabet input
-                if ((alphabet.includes(userInput) === true) && (guessedSet.includes(userInput) === false)){
+                        //check for win state
+                        if (mysterySet.includes("_") === true) {
+                                //Check for alphabet input
+                                if ((alphabet.includes(userInput) === true) && (guessedSet.includes(userInput) === false)) {
 
-                        //Searches mystery word for letters incl. repeats, if found letter adjust mystery set array
-                        let letterCheck = 0;
-                        for (i = 0; i <= mysteryWord.length; i++) {
-                                if (userInput == mysteryWord[i]) {
-                                        letterCheck++;
-                                        mysterySet[i] = userInput;
-                                        //console.log(mysterySet);
+                                        //Searches mystery word for letters incl. repeats, if found letter adjust mystery set array
+                                        let letterCheck = 0;
+                                        for (i = 0; i <= mysteryWord.length; i++) {
+                                                if (userInput == mysteryWord[i]) {
+                                                        letterCheck++;
+                                                        mysterySet[i] = userInput;
+                                                        //console.log(mysterySet);
+                                                }
+
+                                        }
+
+                                        //let letterCheck = mysteryWord.search(userInput);
+                                        //console.log(letterCheck)
+
+                                        if (letterCheck <= 0) {
+                                                guessedSet.push(userInput);
+                                                guessNum--;
+                                                //Print Guesses
+                                                guessedLetters.textContent = "";
+                                                for (i = 0; i < guessedSet.length; i++) {
+                                                        let text = guessedSet[i].toUpperCase();
+                                                        guessedLetters.append(text + " ");
+
+                                                }
+
+                                        } else if (letterCheck > 0) {
+
+                                                guessedSet.push(userInput);
+                                                guessNum--;
+
+                                                //Redisplay to include found letters
+                                                mysteryWordText.textContent = "";
+                                                for (i = 0; i < mysterySet.length; i++) {
+                                                        let character = mysterySet[i];
+                                                        mysteryWordText.append(character.toUpperCase() + " ");
+
+                                                }
+
+                                                //Print Correct Guesses
+                                                guessedLetters.textContent = "";
+                                                for (i = 0; i < guessedSet.length; i++) {
+                                                        let text = guessedSet[i].toUpperCase();
+                                                        guessedLetters.append(text + " ");
+                                                }
+
+                                        }
+                                        guessTxt.textContent = guessNum;
+
+                                } else {
+                                        //alert("Not a letter!");
                                 }
 
+
+
+                        } else {
+                                winCount++;
+                                totalWins.textContent = winCount;
+                                alert("YOU WIN!");
+
+                                gameStart.reset();
                         }
 
-                        //let letterCheck = mysteryWord.search(userInput);
-                        //console.log(letterCheck)
+                        if (guessNum < 0) {
+                                alert("GAME OVER");
 
-                        if (letterCheck <= 0) {
-                                guessedSet.push(userInput);
-                                guessNum--;
-                                //Print Guesses
-                                guessedLetters.textContent = "";
-                                for (i = 0; i < guessedSet.length; i++) {
-                                        let text = guessedSet[i].toUpperCase();
-                                        guessedLetters.append(text + " ");
-                                        
-                                }
-
-                        } else if (letterCheck > 0) {
-
-                                guessedSet.push(userInput);
-                                guessNum--;
-
-                                //Redisplay to include found letters
-                                mysteryWordText.textContent = "";
-                                for (i = 0; i < mysterySet.length; i++) {
-                                        let character = mysterySet[i];
-                                        mysteryWordText.append(character.toUpperCase() +" ");
-                                        
-                                }
-
-                                //Print Correct Guesses
-                                guessedLetters.textContent = "";
-                                for (i = 0; i < guessedSet.length; i++) {
-                                        let text = guessedSet[i].toUpperCase();
-                                        guessedLetters.append(text + " ");
-                                }
-
+                                gameStart.reset();
                         }
-                        guessTxt.textContent = guessNum;
-
-                } else {
-                        //alert("Not a letter!");
-                }
-
-
-
-        } else {
-                winCount++;
-                totalWins.textContent = winCount;
-                alert("YOU WIN!");
-
-                //fix this later
-
-                //reset display
-                guessedLetters.textContent ="";
-                guessTxt.textContent = "10";
-
-                guessNum = 10;
-
-                //establishes empty sets
-                guessedSet = [];
-                mysterySet = [];
-
-                //Generates random mystery word from word bank
-                mysteryWordText.textContent = "";
-                mysteryWord = wordBank[Math.floor(Math.random() * wordBank.length)];
-                console.log(mysteryWord);
-
-                //Fills array with dashes
-                for (i = 0; i < mysteryWord.length; i++) {
-                        mysterySet.push("_");
-                }
-
-                //Displays contents of array
-                for (i = 0; i < mysterySet.length; i++) {
-                        let character = mysterySet[i];
-                        mysteryWordText.append(character+" ");
                 }
 
         }
-
-        if (guessNum < 0){
-                alert("GAME OVER");
-                
-
-                //fix this later
-                //reset display
-                guessedLetters.textContent ="";
-                guessTxt.textContent = "10";
-
-                //establishes empty sets
-                guessedSet = [];
-                guessedSet = [];
-                mysterySet = [];
-
-                guessNum= 10;
-
-                //Generates random mystery word from word bank
-                mysteryWordText.textContent = "";
-                mysteryWord = wordBank[Math.floor(Math.random() * wordBank.length)];
-                console.log(mysteryWord);
-
-                //Fills array with dashes
-                for (i = 0; i < mysteryWord.length; i++) {
-                        mysterySet.push("_");
-                }
-
-                //Displays contents of array
-                for (i = 0; i < mysterySet.length; i++) {
-                        let character = mysterySet[i];
-                        mysteryWordText.append(character+" ");
-                }
-        }
-}
-
-}
 
