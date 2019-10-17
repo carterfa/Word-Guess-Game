@@ -6,6 +6,8 @@ const mysteryWordText = document.getElementById('mysteryWordText');
 const totalWins = document.getElementById('totalWins');
 const guessTxt = document.getElementById('guessTxt');
 
+document.onkeyup = function (event) {
+
 //establishes empty sets
 let correctSet = [];
 let wrongSet = [];
@@ -72,7 +74,7 @@ document.onkeyup = function (event) {
                                 //Print Wrong Guesses
                                 wrongLetters.textContent = "";
                                 for (i = 0; i < wrongSet.length; i++) {
-                                        let text = wrongSet[i];
+                                        let text = wrongSet[i].toUpperCase();
                                         wrongLetters.append(text + " ");
                                         
                                 }
@@ -93,7 +95,7 @@ document.onkeyup = function (event) {
                                 //Print Correct Guesses
                                 correctLetters.textContent = "";
                                 for (i = 0; i < correctSet.length; i++) {
-                                        let text = correctSet[i];
+                                        let text = correctSet[i].toUpperCase();
                                         correctLetters.append(text + " ");
                                 }
 
@@ -178,5 +180,5 @@ document.onkeyup = function (event) {
         }
 }
 
-
+}
 
