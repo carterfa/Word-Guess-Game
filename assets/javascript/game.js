@@ -1,7 +1,7 @@
 let winCount = 0;
 let wordBank = ["shark", "bear", "eagle", "rooster", "rabbit", "dog", "crab", "elephant", "tiger", "turtle", "kangaroo", "panda", "weasel", "whale", "dolphin", "giraffe"]
 
-const correctLetters = document.getElementById('correctLetters');
+const guessedLetters = document.getElementById('guessedLetters');
 const mysteryWordText = document.getElementById('mysteryWordText');
 const totalWins = document.getElementById('totalWins');
 const guessTxt = document.getElementById('guessTxt');
@@ -9,16 +9,14 @@ const guessTxt = document.getElementById('guessTxt');
 document.onkeyup = function (event) {
 
 //establishes empty sets
-let correctSet = [];
-let wrongSet = [];
+let guessedSet = [];
 let mysterySet = [];
 
 //reset guesses
 let guessNum = 10;
 
 //reset display
-wrongLetters.textContent = "";
-correctLetters.textContent ="";
+guessedLetters.textContent ="";
 guessTxt.textContent = "10";
 
 //Generates random mystery word from word bank
@@ -47,7 +45,6 @@ document.onkeyup = function (event) {
 
         let userInput = event.key.toLowerCase();
         const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-        let userGuesses = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
         //check for win state
         if (mysterySet.includes("-") === true) {
@@ -69,19 +66,19 @@ document.onkeyup = function (event) {
                         //console.log(letterCheck)
 
                         if (letterCheck <= 0) {
-                                wrongSet.push(userInput);
+                                guessedSet.push(userInput);
                                 guessNum--;
-                                //Print Wrong Guesses
-                                wrongLetters.textContent = "";
-                                for (i = 0; i < wrongSet.length; i++) {
-                                        let text = wrongSet[i].toUpperCase();
-                                        wrongLetters.append(text + " ");
+                                //Print Guesses
+                                guessedLetters.textContent = "";
+                                for (i = 0; i < guessedSet.length; i++) {
+                                        let text = guessedSet[i].toUpperCase();
+                                        guessedLetters.append(text + " ");
                                         
                                 }
 
                         } else if (letterCheck > 0) {
 
-                                correctSet.push(userInput);
+                                guessedSet.push(userInput);
                                 guessNum--;
 
                                 //Redisplay to include found letters
@@ -93,10 +90,10 @@ document.onkeyup = function (event) {
                                 }
 
                                 //Print Correct Guesses
-                                correctLetters.textContent = "";
-                                for (i = 0; i < correctSet.length; i++) {
-                                        let text = correctSet[i].toUpperCase();
-                                        correctLetters.append(text + " ");
+                                guessedLetters.textContent = "";
+                                for (i = 0; i < guessedSet.length; i++) {
+                                        let text = guessedSet[i].toUpperCase();
+                                        guessedLetters.append(text + " ");
                                 }
 
                         }
@@ -116,15 +113,13 @@ document.onkeyup = function (event) {
                 //fix this later
 
                 //reset display
-                wrongLetters.textContent = "";
-                correctLetters.textContent ="";
+                guessedLetters.textContent ="";
                 guessTxt.textContent = "10";
 
                 guessNum = 10;
 
                 //establishes empty sets
-                correctSet = [];
-                wrongSet = [];
+                guessedSet = [];
                 mysterySet = [];
 
                 //Generates random mystery word from word bank
@@ -151,13 +146,12 @@ document.onkeyup = function (event) {
 
                 //fix this later
                 //reset display
-                wrongLetters.textContent = "";
-                correctLetters.textContent ="";
+                guessedLetters.textContent ="";
                 guessTxt.textContent = "10";
 
                 //establishes empty sets
-                correctSet = [];
-                wrongSet = [];
+                guessedSet = [];
+                guessedSet = [];
                 mysterySet = [];
 
                 guessNum= 10;
