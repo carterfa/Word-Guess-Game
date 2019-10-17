@@ -26,13 +26,13 @@ console.log(mysteryWord);
 
 //Fills array with dashes
 for (i = 0; i < mysteryWord.length; i++) {
-        mysterySet.push("-");
+        mysterySet.push("_");
 }
 
-//Displays contents of array
+//Displays contents of dash array
 for (i = 0; i < mysterySet.length; i++) {
         let character = mysterySet[i];
-        mysteryWordText.append(character);
+        mysteryWordText.append(character+" ");
 }
 
 
@@ -47,9 +47,9 @@ document.onkeyup = function (event) {
         const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
         //check for win state
-        if (mysterySet.includes("-") === true) {
+        if (mysterySet.includes("_") === true) {
                 //Check for alphabet input
-                if (alphabet.includes(userInput) === true) {
+                if ((alphabet.includes(userInput) === true) && (guessedSet.includes(userInput) === false)){
 
                         //Searches mystery word for letters incl. repeats, if found letter adjust mystery set array
                         let letterCheck = 0;
@@ -85,7 +85,7 @@ document.onkeyup = function (event) {
                                 mysteryWordText.textContent = "";
                                 for (i = 0; i < mysterySet.length; i++) {
                                         let character = mysterySet[i];
-                                        mysteryWordText.append(character);
+                                        mysteryWordText.append(character.toUpperCase() +" ");
                                         
                                 }
 
@@ -100,7 +100,7 @@ document.onkeyup = function (event) {
                         guessTxt.textContent = guessNum;
 
                 } else {
-                        alert("Not a letter!");
+                        //alert("Not a letter!");
                 }
 
 
@@ -129,13 +129,13 @@ document.onkeyup = function (event) {
 
                 //Fills array with dashes
                 for (i = 0; i < mysteryWord.length; i++) {
-                        mysterySet.push("-");
+                        mysterySet.push("_");
                 }
 
                 //Displays contents of array
                 for (i = 0; i < mysterySet.length; i++) {
                         let character = mysterySet[i];
-                        mysteryWordText.append(character);
+                        mysteryWordText.append(character+" ");
                 }
 
         }
@@ -163,13 +163,13 @@ document.onkeyup = function (event) {
 
                 //Fills array with dashes
                 for (i = 0; i < mysteryWord.length; i++) {
-                        mysterySet.push("-");
+                        mysterySet.push("_");
                 }
 
                 //Displays contents of array
                 for (i = 0; i < mysterySet.length; i++) {
                         let character = mysterySet[i];
-                        mysteryWordText.append(character);
+                        mysteryWordText.append(character+" ");
                 }
         }
 }
