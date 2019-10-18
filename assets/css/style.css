@@ -5,6 +5,20 @@ h1{
     font-weight: bold;
 }
 
+#messageText{
+    margin-bottom: 0em;
+}
+
+button {
+    display: none;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 @media screen and (max-width: 500px){
     h1{
         font-size: 2em;

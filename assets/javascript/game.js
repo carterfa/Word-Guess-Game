@@ -5,6 +5,8 @@ const guessedLetters = document.getElementById('guessedLetters');
 const mysteryWordText = document.getElementById('mysteryWordText');
 const totalWins = document.getElementById('totalWins');
 const guessTxt = document.getElementById('guessTxt');
+const resetBtn = document.getElementById("resetBtn");
+const message = document.getElementById("message");
 
 //establishes empty sets
 let guessedSet = [];
@@ -45,15 +47,15 @@ const game = {
 
                 }
 
+                resetBtn.style.display = "none";
+                message.textContent = "";
+
         }
 }
 
 document.onkeyup = function (event) {
 
         game.reset();
-
-
-        //mysteryWordText.textContent = mysteryWord;
 
 
         //user interaction function
@@ -110,7 +112,11 @@ document.onkeyup = function (event) {
                                 }
 
                         }
-                        guessTxt.textContent = guessNum;
+                        
+                        if (guessNum >= 0) {
+                                guessTxt.textContent = guessNum;
+                        
+                        }
 
                         console.log(guessNum)
 
@@ -118,13 +124,16 @@ document.onkeyup = function (event) {
                         if (!mysterySet.includes("_")) {
                                 winCount++;
                                 totalWins.textContent = winCount;
-                                alert("YOU WIN!");
+                                message.textContent = "YOU WIN!";
+                                resetBtn.style.display = "block";
 
-                                game.reset();
+                                //game.reset();
                         } else if (guessNum < 0) {
-                                alert("GAME OVER");
+                                mysteryWordText.textContent = mysteryWord.toUpperCase();
+                                message.textContent = "GAME OVER!";
+                                resetBtn.style.display = "block";
 
-                                game.reset();
+                                //game.reset();
                         }
 
                 }
