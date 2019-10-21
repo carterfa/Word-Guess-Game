@@ -1,5 +1,5 @@
 let winCount = 0;
-let wordBank = ["shark", "bear", "eagle", "rooster", "rabbit", "dog", "crab", "elephant", "tiger", "turtle", "kangaroo", "panda", "weasel", "whale", "dolphin", "giraffe"]
+let wordBank = ["whale shark", "grizzly bear", "bald eagle", "rooster", "rabbit", "dog", "ghost crab", "african elephant", "bengal tiger", "sea turtle", "kangaroo", "giant panda", "weasel", "humpback whale", "bottlenose dolphin", "giraffe"]
 
 const guessedLetters = document.getElementById('guessedLetters');
 const mysteryWordText = document.getElementById('mysteryWordText');
@@ -36,14 +36,22 @@ const game = {
 
                 //Fills array with dashes
                 for (i = 0; i < mysteryWord.length; i++) {
-                        mysterySet.push("_");
+                        if (mysteryWord[i] === " ") {
+                                mysterySet.push(" ");
+                        } else {
+                                mysterySet.push("_");
+                        }
                 }
 
                 //Displays contents of dash array
                 for (i = 0; i < mysterySet.length; i++) {
-                        let character = mysterySet[i];
-                        mysteryWordText.append(character + " ");
-
+                        if (mysterySet[i] === " ") {
+                                mysteryWordText.append('\xa0');
+                        } else {
+                                let character = mysterySet[i];
+                                mysteryWordText.append(character + " ");
+                                console.log(character);
+                        }
 
                 }
 
@@ -100,8 +108,11 @@ document.onkeyup = function (event) {
                                 mysteryWordText.textContent = "";
                                 for (i = 0; i < mysterySet.length; i++) {
                                         let character = mysterySet[i];
-                                        mysteryWordText.append(character.toUpperCase() + " ");
-
+                                        if (mysterySet[i] === " ") {
+                                                mysteryWordText.append('\xa0');
+                                        } else {
+                                                mysteryWordText.append(character.toUpperCase() + " ");
+                                        }
                                 }
 
                                 //Print Correct Guesses
@@ -112,10 +123,10 @@ document.onkeyup = function (event) {
                                 }
 
                         }
-                        
+
                         if (guessNum >= 0) {
                                 guessTxt.textContent = guessNum;
-                        
+
                         }
 
                         console.log(guessNum)
