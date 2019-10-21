@@ -8,27 +8,27 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Word Guess Game</title>
+    <title>Guess the Animal!</title>
 </head>
 
 <body>
     <header class="jumbotron">
-
         <div class="container">
-
             <h1>
                 <span id="mysteryWordText">
-                    Press any key to get started!
+                    Guess the Animal! Press any key to get started!
                 </span>
             </h1>
 
-            <h2>Guesses Remaining: <span id="guessTxt">10</span></h2>
-            <h2>Letters Guessed: <span id="guessedLetters"></span></h2>
-            <h2>Wins: <span id="totalWins">0</span></h2>
-            
+            <div id="gameText">
+                <h2>Guesses Remaining: <span id="guessTxt">10</span></h2>
+                <h2>Letters Guessed: <span id="guessedLetters"></span></h2>
+                <h2>Wins: <span id="totalWins">0</span></h2>
+            </div>
+
             <h1 id="messageText"><span id="message"></span></h1>
-            <h2><button id="resetBtn" onclick="game.reset()">RESET</button></h2>
-            
+            <h2><button id="resetBtn" onclick="game.reset()">PLAY AGAIN</button></h2>
+
         </div>
 
     </header>

@@ -1,5 +1,6 @@
 let winCount = 0;
-let wordBank = ["whale shark", "grizzly bear", "bald eagle", "rooster", "rabbit", "dog", "ghost crab", "african elephant", "bengal tiger", "sea turtle", "kangaroo", "giant panda", "weasel", "humpback whale", "bottlenose dolphin", "giraffe"]
+let wordBank = ["spider", "shark", "bear", "eagle", "rooster", "rabbit", "dog", "crab", "elephant", "tiger", "sea turtle", "kangaroo", "giant panda", "weasel", "whale", "dolphin", "giraffe", "rhino", "gorilla", "zebra"]
+let gameState = true;
 
 const guessedLetters = document.getElementById('guessedLetters');
 const mysteryWordText = document.getElementById('mysteryWordText');
@@ -7,6 +8,7 @@ const totalWins = document.getElementById('totalWins');
 const guessTxt = document.getElementById('guessTxt');
 const resetBtn = document.getElementById("resetBtn");
 const message = document.getElementById("message");
+const gameText = document.getElementById("gameText");
 
 //establishes empty sets
 let guessedSet = [];
@@ -24,6 +26,8 @@ const game = {
 
                 //reset guesses
                 guessNum = 10;
+
+                gameState = true;
 
                 //reset display
                 guessedLetters.textContent = "";
@@ -58,12 +62,39 @@ const game = {
                 resetBtn.style.display = "none";
                 message.textContent = "";
 
+        },
+
+        win: function () {
+                if (!mysterySet.includes("_")) {
+                        winCount++;
+                        totalWins.textContent = winCount;
+                        message.textContent = "YOU WIN!";
+                        resetBtn.style.display = "block";
+                        gameState = false;
+
+                        //game.reset();
+                }
+
+        },
+
+        over: function () {
+              if (gameState ==true) {
+
+                mysteryWordText.textContent = mysteryWord.toUpperCase();
+                message.textContent = "GAME OVER!";
+                resetBtn.style.display = "block";
+                gameState = false;
+              }
+                //game.reset();
         }
+
+
 }
 
 document.onkeyup = function (event) {
 
         game.reset();
+        gameText.style.display = "block";
 
 
         //user interaction function
@@ -73,9 +104,9 @@ document.onkeyup = function (event) {
 
 
                 //Check for alphabet input
-                if (userInput.match(/^[a-z]$/) && !guessedSet.includes(userInput)) {
+                if (userInput.match(/^[a-z]$/) && !guessedSet.includes(userInput) && gameState === true) {
                         guessNum--;
-
+                        
                         //Searches mystery word for letters incl. repeats, if found letter adjust mystery set array
                         let letterCheck = false;
                         for (i = 0; i <= mysteryWord.length; i++) {
@@ -92,7 +123,7 @@ document.onkeyup = function (event) {
 
                         if (!letterCheck) {
                                 guessedSet.push(userInput);
-                                //Print Guesses
+                                //Print Wrong Guess
                                 guessedLetters.textContent = "";
                                 for (i = 0; i < guessedSet.length; i++) {
                                         let text = guessedSet[i].toUpperCase();
@@ -100,8 +131,12 @@ document.onkeyup = function (event) {
 
                                 }
 
-                        } else {
+                                if (guessNum <= 0) {
+                                        game.over();                        
+                                }
 
+                        } else {
+                                //Correct Guess
                                 guessedSet.push(userInput);
 
                                 //Redisplay to include found letters
@@ -122,6 +157,12 @@ document.onkeyup = function (event) {
                                         guessedLetters.append(text + " ");
                                 }
 
+                                game.win ();
+
+                                if (guessNum <= 0) {
+                                        game.over();                        
+                                }
+
                         }
 
                         if (guessNum >= 0) {
@@ -132,20 +173,9 @@ document.onkeyup = function (event) {
                         console.log(guessNum)
 
                         //check for win state
-                        if (!mysterySet.includes("_")) {
-                                winCount++;
-                                totalWins.textContent = winCount;
-                                message.textContent = "YOU WIN!";
-                                resetBtn.style.display = "block";
 
-                                //game.reset();
-                        } else if (guessNum < 0) {
-                                mysteryWordText.textContent = mysteryWord.toUpperCase();
-                                message.textContent = "GAME OVER!";
-                                resetBtn.style.display = "block";
 
-                                //game.reset();
-                        }
+
 
                 }
         }

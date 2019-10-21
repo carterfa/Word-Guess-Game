@@ -1,3 +1,7 @@
+body{
+    background-image: url(../images/seamless-giraffe-pattern.jpg);
+}
+
 h1{
     font-size: 4em;
     margin: 0em 0em 1em 0em;
@@ -5,13 +9,22 @@ h1{
     font-weight: bold;
 }
 
+#titleText{
+    margin: 0;
+    background-color: #eeeeee;
+}
+
 #messageText{
     margin-bottom: 0em;
 }
 
+#gameText{
+    display: none;
+}
+
 button {
     display: none;
-    background-color: red;
+    background-color: green;
     color: white;
     font-weight: bold;
     text-align: center;
@@ -21,12 +34,12 @@ button {
 
 @media screen and (max-width: 500px){
     h1{
-        font-size: 2em;
+        font-size: 3em;
         margin: 0em 0em .5em 0em;
         text-align: center;
     }
 
     h2{
-        font-size: 1em;
+        font-size: 2em;
     }
 }
