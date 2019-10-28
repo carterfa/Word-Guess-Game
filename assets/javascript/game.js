@@ -20,7 +20,8 @@ const game = {
                 gameState = true;
 
                 //reset display
-                $("#gameText").css("display", "block");
+                $("#gameText").show();
+                $("#guessBtn").show();
                 $('#guessedLetters').text("");
                 $('#guessTxt').text("10");
                 $('#message').text("Guess the Animal!");
@@ -42,7 +43,7 @@ const game = {
                 game.display();
 
                 //hides button
-                $("#playBtn").css("display", "none");
+                $("#playBtn").hide();
 
         },
 
@@ -69,9 +70,10 @@ const game = {
                 winCount++;
                 totalWins.textContent = winCount;
                 $("#message").text("YOU WIN!");
-                $("#playBtn").css("display", "block");
+                $("#playBtn").show();
                 $("#playBtn").focus();
                 $("#playBtn").text("PLAY AGAIN");
+                $("#guessBtn").hide();
                 gameState = false;
         },
 
@@ -79,9 +81,10 @@ const game = {
         over: function () {
                 $('#mysteryWordText').text(mysteryWord.toUpperCase());
                 $("#message").text("GAME OVER!");
-                $("#playBtn").css("display", "block");
+                $("#playBtn").show();
                 $("#playBtn").focus();
                 $("#playBtn").text("PLAY AGAIN");
+                $("#guessBtn").hide();
                 gameState = false;
 
         },
@@ -128,7 +131,10 @@ const game = {
         guess: function () {
                 animalInput = prompt("Guess the animal!").toLowerCase().trim();
                 if (animalInput === mysteryWord) {
-
+                        $('#mysteryWordText').text(mysteryWord.toUpperCase());
+                        game.win();
+                } else {
+                        game.over();
                 }
         }
 }
@@ -152,7 +158,7 @@ $(document).ready(function () {
                         if (!mysterySet.includes("_")) {
                                 game.win();
                         }
-                        
+
                         if (guessNum <= 0 && gameState === true) {
                                 game.over();
                         }
