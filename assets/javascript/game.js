@@ -20,11 +20,12 @@ const game = {
                 gameState = true;
 
                 //reset display
-                $("#gameText").show();
+                $(".stats").show();
                 $("#guessBtn").show();
+                $("#keyboard").show();
                 $('#guessedLetters').text("");
-                $('#guessTxt').text("10");
-                $('#message').text("Guess the Animal!");
+                $('#guessTxt').text("Guesses Left: "+guessNum);
+                $('#message').text("");
 
                 //Generates random mystery word from word bank
                 mysteryWord = wordBank[Math.floor(Math.random() * wordBank.length)];
@@ -96,7 +97,7 @@ const game = {
                 if (!guessedSet.includes(userInput) && gameState === true) {
                         //decreases number of guesses
                         guessNum--;
-                        $('#guessTxt').text(guessNum);
+                        $('#guessTxt').text("Guesses Left: "+guessNum);
 
                         game.check(userInput);
                         //if no more blanks in word run win state
@@ -166,7 +167,11 @@ const game = {
 //waits for page to load before performing functions
 $(document).ready(function () {
 
+        //hides buttons on initial startup
+        $("#keyboard").hide();
         $("#guessBtn").hide();
+        $(".stats").hide();
+
         //user interaction function
         document.onkeyup = function (event) {
                 //logs keyboard input

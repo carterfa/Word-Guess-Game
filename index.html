@@ -15,25 +15,24 @@
 <body>
     <div class="container">
         <!-- displays user stats -->
-        <div class="row" id="gameText">
-                <div class="col-4"><h2 class="stats">Guesses Left: <span id="guessTxt">10</span></h2></div>
-                <div class="col-4"><h2 class="stats">Letters Guessed: <span id="guessedLetters"></span></h2></div>
-                <div class="col-4"><h2 class="stats">Wins: <span id="totalWins">0</span></h2></div>
+        <div class="row">
+            <div class="col-4">
+                <h2 class="stats">Wins: <span id="totalWins">0</span></h2>
             </div>
-        <!-- Displays dialog to user -->
-        <h2 id="messageText"><span id="message">Click the PLAY button to begin!</span></h2>
+            <div class="col-4">
+                <!-- Displays dialog to user -->
+                <h2 id="messageText"><span id="message">Guess the Animal! Click the PLAY button to begin!</span></h2>
+            </div>
+            <div class="col-4">
+                <h2 class="stats"><span id="guessTxt">10</span></h2>
+            </div>
+        </div>
         <h1>
             <span id="mysteryWordText">
             </span>
         </h1>
-        
-        <!-- guess the word button -->
-        <h2><button id="guessBtn">GUESS WORD</button></h2>
-        <!-- reset button -->
-        <h2><button id="playBtn" autofocus>PLAY</button></h2>
-
         <div class="container" id="keyboard">
-            <div class="row">
+            <div class="row keyboardRow">
                 <h2>
                     <button class="letterBtn" id="q">Q</button>
                     <button class="letterBtn" id="w">W</button>
@@ -47,7 +46,7 @@
                     <button class="letterBtn" id="p">P</button>
                 </h2>
             </div>
-            <div class="row">
+            <div class="row keyboardRow">
                 <h2>
                     <button class="letterBtn" id="a">A</button>
                     <button class="letterBtn" id="s">S</button>
@@ -60,7 +59,7 @@
                     <button class="letterBtn" id="l">L</button>
                 </h2>
             </div>
-            <div class="row">
+            <div class="row keyboardRow">
                 <h2>
                     <button class="letterBtn" id="z">Z</button>
                     <button class="letterBtn" id="x">X</button>
@@ -72,6 +71,14 @@
                 </h2>
             </div>
         </div>
+        <div class="row">
+            <h2 class="stats" id="guessedLettersRow">Letters Guessed: <span id="guessedLetters"></h2>
+        </div>
+        <!-- guess the word button -->
+        <h2><button id="guessBtn">GUESS WORD</button></h2>
+        <!-- reset button -->
+        <h2><button id="playBtn" autofocus>PLAY</button></h2>
+
     </div>
 
     <!-- link to javascript and jquery-->
