@@ -89,6 +89,28 @@ const game = {
 
         },
 
+        //check to see if valid user input
+        valid: function (userInput) {
+
+                //only registers if game is active, prevents user from guessing the same letter more than once
+                if (!guessedSet.includes(userInput) && gameState === true) {
+                        //decreases number of guesses
+                        guessNum--;
+                        $('#guessTxt').text(guessNum);
+
+                        game.check(userInput);
+                        //if no more blanks in word run win state
+                        if (!mysterySet.includes("_")) {
+                                game.win();
+                        }
+                        //if user is out of guesses and still has not guessed the correct word run game over
+                        if (guessNum <= 0 && gameState === true) {
+                                game.over();
+                        }
+                }
+
+        },
+
         //displays guessed letters
         print: function (userInput) {
 
@@ -130,11 +152,13 @@ const game = {
 
         guess: function () {
                 animalInput = prompt("Guess the animal!").toLowerCase().trim();
-                if (animalInput === mysteryWord) {
-                        $('#mysteryWordText').text(mysteryWord.toUpperCase());
-                        game.win();
-                } else {
-                        game.over();
+                if (animalInput) {
+                        if (animalInput === mysteryWord) {
+                                $('#mysteryWordText').text(mysteryWord.toUpperCase());
+                                game.win();
+                        } else {
+                                game.over();
+                        }
                 }
         }
 }
@@ -142,33 +166,30 @@ const game = {
 //waits for page to load before performing functions
 $(document).ready(function () {
 
+        $("#guessBtn").hide();
         //user interaction function
         document.onkeyup = function (event) {
                 //logs keyboard input
                 let userInput = event.key.toLowerCase();
-
-                //Check for alphabet input
-                if (userInput.match(/^[a-z]$/) && !guessedSet.includes(userInput) && gameState === true) {
-                        //decreases number of guesses
-                        guessNum--;
-                        $('#guessTxt').text(guessNum);
-
-                        game.check(userInput);
-
-                        if (!mysterySet.includes("_")) {
-                                game.win();
-                        }
-
-                        if (guessNum <= 0 && gameState === true) {
-                                game.over();
-                        }
+                //only allows alphabet characters
+                if (userInput.match(/^[a-z]$/)) {
+                        game.valid(userInput);
                 }
         }
 
+        //letter buttons function
+        $(".letterBtn").on("click", function () {
+                //logs button clicked as user input
+                let userInput = $(this).attr("id");
+                game.valid(userInput);
+        })
+
+        //starts game on click
         $("#playBtn").on("click", function () {
                 game.play();
         })
 
+        //prompts user to guess the word
         $("#guessBtn").on("click", function () {
                 game.guess();
         })

@@ -14,22 +14,64 @@
 
 <body>
     <div class="container">
+        <!-- displays user stats -->
+        <div class="row" id="gameText">
+                <div class="col-4"><h2 class="stats">Guesses Left: <span id="guessTxt">10</span></h2></div>
+                <div class="col-4"><h2 class="stats">Letters Guessed: <span id="guessedLetters"></span></h2></div>
+                <div class="col-4"><h2 class="stats">Wins: <span id="totalWins">0</span></h2></div>
+            </div>
         <!-- Displays dialog to user -->
         <h2 id="messageText"><span id="message">Click the PLAY button to begin!</span></h2>
         <h1>
             <span id="mysteryWordText">
             </span>
         </h1>
-        <!-- displays user stats -->
-        <div id="gameText">
-            <h2>Guesses Remaining: <span id="guessTxt">10</span></h2>
-            <h2>Letters Guessed: <span id="guessedLetters"></span></h2>
-            <h2>Wins: <span id="totalWins">0</span></h2>
-        </div>
+        
         <!-- guess the word button -->
-        <h2><button id="guessBtn" autofocus>GUESS WORD</button></h2>
+        <h2><button id="guessBtn">GUESS WORD</button></h2>
         <!-- reset button -->
         <h2><button id="playBtn" autofocus>PLAY</button></h2>
+
+        <div class="container" id="keyboard">
+            <div class="row">
+                <h2>
+                    <button class="letterBtn" id="q">Q</button>
+                    <button class="letterBtn" id="w">W</button>
+                    <button class="letterBtn" id="e">E</button>
+                    <button class="letterBtn" id="r">R</button>
+                    <button class="letterBtn" id="t">T</button>
+                    <button class="letterBtn" id="y">Y</button>
+                    <button class="letterBtn" id="u">U</button>
+                    <button class="letterBtn" id="i">I</button>
+                    <button class="letterBtn" id="o">O</button>
+                    <button class="letterBtn" id="p">P</button>
+                </h2>
+            </div>
+            <div class="row">
+                <h2>
+                    <button class="letterBtn" id="a">A</button>
+                    <button class="letterBtn" id="s">S</button>
+                    <button class="letterBtn" id="d">D</button>
+                    <button class="letterBtn" id="f">F</button>
+                    <button class="letterBtn" id="g">G</button>
+                    <button class="letterBtn" id="h">H</button>
+                    <button class="letterBtn" id="j">J</button>
+                    <button class="letterBtn" id="k">K</button>
+                    <button class="letterBtn" id="l">L</button>
+                </h2>
+            </div>
+            <div class="row">
+                <h2>
+                    <button class="letterBtn" id="z">Z</button>
+                    <button class="letterBtn" id="x">X</button>
+                    <button class="letterBtn" id="c">C</button>
+                    <button class="letterBtn" id="v">V</button>
+                    <button class="letterBtn" id="b">B</button>
+                    <button class="letterBtn" id="n">N</button>
+                    <button class="letterBtn" id="m">M</button>
+                </h2>
+            </div>
+        </div>
     </div>
 
     <!-- link to javascript and jquery-->
