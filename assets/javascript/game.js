@@ -8,7 +8,7 @@ let guessNum = 10;
 const game = {
 
         //generates new word and prepares the game for play
-        reset: function () {
+        play: function () {
                 let wordBank = ["spider", "shark", "bear", "eagle", "rooster", "rabbit", "dog", "crab", "elephant", "tiger", "sea turtle", "kangaroo", "giant panda", "weasel", "whale", "dolphin", "giraffe", "rhino", "gorilla", "zebra"]
                 //reset sets
                 guessedSet = [];
@@ -42,7 +42,7 @@ const game = {
                 game.display();
 
                 //hides button
-                $("#resetBtn").css("display", "none");
+                $("#playBtn").css("display", "none");
 
         },
 
@@ -66,30 +66,27 @@ const game = {
 
         //checks to see if player won and if so displays dialog
         win: function () {
-                if (!mysterySet.includes("_")) {
-                        winCount++;
-                        totalWins.textContent = winCount;
-                        $("#message").text("YOU WIN!");
-                        $("#resetBtn").css("display", "block");
-                        $("#resetBtn").focus();
-                        gameState = false;
-                }
-
+                winCount++;
+                totalWins.textContent = winCount;
+                $("#message").text("YOU WIN!");
+                $("#playBtn").css("display", "block");
+                $("#playBtn").focus();
+                $("#playBtn").text("PLAY AGAIN");
+                gameState = false;
         },
 
         //checks to see if player lost and if so displays dialog
         over: function () {
-                if (guessNum <= 0 && gameState === true) {
-                        $('#mysteryWordText').text(mysteryWord.toUpperCase());
-                        $("#message").text("GAME OVER!");
-                        $("#resetBtn").css("display", "block");
-                        $("#resetBtn").focus();
-                        gameState = false;
-                }
+                $('#mysteryWordText').text(mysteryWord.toUpperCase());
+                $("#message").text("GAME OVER!");
+                $("#playBtn").css("display", "block");
+                $("#playBtn").focus();
+                $("#playBtn").text("PLAY AGAIN");
+                gameState = false;
 
         },
 
-        //adds guessed letters
+        //displays guessed letters
         print: function (userInput) {
 
                 guessedSet.push(userInput);
@@ -119,22 +116,20 @@ const game = {
 
                 //for when no match was found
                 if (!letterCheck) {
-
                         game.print(userInput);
-                        game.over();
-
                         //for when matches were found
                 } else {
                         game.display();
                         game.print(userInput);
-                        game.win();
-                        game.over();
                 }
 
         },
 
         guess: function () {
-                prompt();
+                animalInput = prompt("Guess the animal!").toLowerCase().trim();
+                if (animalInput === mysteryWord) {
+
+                }
         }
 }
 
@@ -153,7 +148,23 @@ $(document).ready(function () {
                         $('#guessTxt').text(guessNum);
 
                         game.check(userInput);
+
+                        if (!mysterySet.includes("_")) {
+                                game.win();
+                        }
+                        
+                        if (guessNum <= 0 && gameState === true) {
+                                game.over();
+                        }
                 }
         }
+
+        $("#playBtn").on("click", function () {
+                game.play();
+        })
+
+        $("#guessBtn").on("click", function () {
+                game.guess();
+        })
 });
 
