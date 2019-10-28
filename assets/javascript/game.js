@@ -58,7 +58,8 @@ const game = {
                         let character = mysterySet[i];
                         if (mysterySet[i] === " ") {
                                 //displays space in case of animal name with 2 words
-                                $('#mysteryWordText').append('\xa0');
+                                //$('#mysteryWordText').append('\xa0');
+                                $('#mysteryWordText').append("</br>");
                         } else {
                                 $('#mysteryWordText').append(character.toUpperCase() + " ");
                         }
@@ -126,7 +127,7 @@ const game = {
 
                 // }
 
-                $("#"+userInput).css("opacity", 0.);
+                $("#"+userInput).css("opacity", 0.2);
         },
 
         //reviews user input to determine if wrong or correct guess
