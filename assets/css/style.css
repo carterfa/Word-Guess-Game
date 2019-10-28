@@ -18,11 +18,11 @@ body{
     float: right;
 }
 
-#guessedLettersRow{
+/* #guessedLettersRow{
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-}
+} */
 
 header{
     padding: 1em;

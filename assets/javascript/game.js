@@ -23,9 +23,10 @@ const game = {
                 $(".stats").show();
                 $("#guessBtn").show();
                 $("#keyboard").show();
-                $('#guessedLetters').text("");
                 $('#guessTxt').text("Guesses Left: "+guessNum);
                 $('#message').text("");
+                $(".letterBtn").css("opacity", 1);
+                // $('#guessedLetters').text("");
 
                 //Generates random mystery word from word bank
                 mysteryWord = wordBank[Math.floor(Math.random() * wordBank.length)];
@@ -112,20 +113,20 @@ const game = {
 
         },
 
-        //displays guessed letters
+        //adds guessed letter to letter set, hides letter of guessed letter
         print: function (userInput) {
 
                 guessedSet.push(userInput);
 
-                //Print Guess
-                $('#guessedLetters').text("");
-                for (i = 0; i < guessedSet.length; i++) {
-                        let text = guessedSet[i].toUpperCase();
-                        $("#guessedLetters").append(text + " ");
+                // //Print Guess
+                // $('#guessedLetters').text("");
+                // for (i = 0; i < guessedSet.length; i++) {
+                //         let text = guessedSet[i].toUpperCase();
+                //         $("#guessedLetters").append(text + " ");
 
-                }
+                // }
 
-
+                $("#"+userInput).css("opacity", 0.);
         },
 
         //reviews user input to determine if wrong or correct guess
@@ -152,9 +153,9 @@ const game = {
         },
 
         guess: function () {
-                animalInput = prompt("Guess the animal!").toLowerCase().trim();
+                animalInput = prompt("Guess the animal!");
                 if (animalInput) {
-                        if (animalInput === mysteryWord) {
+                        if ((animalInput.toLowerCase().trim()) === mysteryWord) {
                                 $('#mysteryWordText').text(mysteryWord.toUpperCase());
                                 game.win();
                         } else {
