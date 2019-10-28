@@ -10,6 +10,7 @@ const game = {
         //generates new word and prepares the game for play
         play: function () {
                 let wordBank = ["spider", "shark", "bear", "eagle", "rooster", "rabbit", "dog", "crab", "elephant", "tiger", "sea turtle", "kangaroo", "giant panda", "weasel", "whale", "dolphin", "giraffe", "rhino", "gorilla", "zebra"]
+                //let wordBank = ["pacific spiny lumpsucker", "whale shark"]
                 //reset sets
                 guessedSet = [];
                 mysterySet = [];

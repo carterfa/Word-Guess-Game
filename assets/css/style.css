@@ -74,7 +74,15 @@ h1{
         text-align: center;
     }
 
-    h2{
+    .letterBtn{
+        margin: .1em;
+    }
+
+}
+
+@media screen and (max-width: 500px){
+    #messageText, .stats{
         font-size: 1em;
     }
+
 }
