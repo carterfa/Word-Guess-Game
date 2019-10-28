@@ -13,28 +13,25 @@
 </head>
 
 <body>
-    <header class="jumbotron">
-        <div class="container">
-            <h1>
-                <!-- displays title -->
-                <span id="mysteryWordText">
-                    Guess the Animal! Click the PLAY button to get started!
-                </span>
-            </h1>
-            <!-- tracks user stats -->
-            <div id="gameText">
-                <h2>Guesses Remaining: <span id="guessTxt">10</span></h2>
-                <h2>Letters Guessed: <span id="guessedLetters"></span></h2>
-                <h2>Wins: <span id="totalWins">0</span></h2>
-            </div>
-            <!-- displays messages to user and reset button -->
-            <h1 id="messageText"><span id="message"></span></h1>
-            <h2><button id="resetBtn" onclick="game.reset()">PLAY</button></h2>
-
+    <div class="container">
+        <!-- Displays dialog to user -->
+        <h2 id="messageText"><span id="message">Click the PLAY button to begin!</span></h2>
+        <h1>
+            <span id="mysteryWordText">
+            </span>
+        </h1>
+        <!-- displays user stats -->
+        <div id="gameText">
+            <h2>Guesses Remaining: <span id="guessTxt">10</span></h2>
+            <h2>Letters Guessed: <span id="guessedLetters"></span></h2>
+            <h2>Wins: <span id="totalWins">0</span></h2>
         </div>
+        <!-- reset button -->
+        <h2><button id="resetBtn" onclick="game.reset()" autofocus>PLAY</button></h2>
+    </div>
 
-    </header>
-    <!-- link to javascript-->
+    <!-- link to javascript and jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="assets/javascript/game.js"></script>
 </body>
 

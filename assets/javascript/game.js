@@ -5,14 +5,6 @@ let winCount = 0;
 let gameState = true;
 let guessNum = 10;
 
-const guessedLetters = document.getElementById('guessedLetters');
-const mysteryWordText = document.getElementById('mysteryWordText');
-const totalWins = document.getElementById('totalWins');
-const guessTxt = document.getElementById('guessTxt');
-const resetBtn = document.getElementById("resetBtn");
-const message = document.getElementById("message");
-const gameText = document.getElementById("gameText");
-
 const game = {
 
         //generates new word and prepares the game for play
@@ -28,15 +20,16 @@ const game = {
                 gameState = true;
 
                 //reset display
-                gameText.style.display = "block";
-                guessedLetters.textContent = "";
-                guessTxt.textContent = "10";
+                $("#gameText").css("display", "block");
+                $('#guessedLetters').text("");
+                $('#guessTxt').text("10");
+                $('#message').text("Guess the Animal!");
 
                 //Generates random mystery word from word bank
                 mysteryWord = wordBank[Math.floor(Math.random() * wordBank.length)];
                 console.log(mysteryWord);
 
-                //Fills array with dashes
+                //Fills array with dashes or spaces
                 for (i = 0; i < mysteryWord.length; i++) {
                         if (mysteryWord[i] === " ") {
                                 mysterySet.push(" ");
@@ -45,10 +38,11 @@ const game = {
                         }
                 }
 
+                //run display function
                 game.display();
 
-                resetBtn.style.display = "none";
-                message.textContent = "";
+                //hides button
+                $("#resetBtn").css("display", "none");
 
         },
 
@@ -56,14 +50,14 @@ const game = {
         display: function () {
 
                 //Displays contents of array
-                mysteryWordText.textContent = "";
+                $('#mysteryWordText').text("");
                 for (i = 0; i < mysterySet.length; i++) {
                         let character = mysterySet[i];
                         if (mysterySet[i] === " ") {
                                 //displays space in case of animal name with 2 words
-                                mysteryWordText.append('\xa0');
+                                $('#mysteryWordText').append('\xa0');
                         } else {
-                                mysteryWordText.append(character.toUpperCase() + " ");
+                                $('#mysteryWordText').append(character.toUpperCase() + " ");
                         }
 
                 }
@@ -75,8 +69,9 @@ const game = {
                 if (!mysterySet.includes("_")) {
                         winCount++;
                         totalWins.textContent = winCount;
-                        message.textContent = "YOU WIN!";
-                        resetBtn.style.display = "block";
+                        $("#message").text("YOU WIN!");
+                        $("#resetBtn").css("display", "block");
+                        $("#resetBtn").focus();
                         gameState = false;
                 }
 
@@ -85,9 +80,10 @@ const game = {
         //checks to see if player lost and if so displays dialog
         over: function () {
                 if (guessNum <= 0 && gameState === true) {
-                        mysteryWordText.textContent = mysteryWord.toUpperCase();
-                        message.textContent = "GAME OVER!";
-                        resetBtn.style.display = "block";
+                        $('#mysteryWordText').text(mysteryWord.toUpperCase());
+                        $("#message").text("GAME OVER!");
+                        $("#resetBtn").css("display", "block");
+                        $("#resetBtn").focus();
                         gameState = false;
                 }
 
@@ -99,10 +95,10 @@ const game = {
                 guessedSet.push(userInput);
 
                 //Print Guess
-                guessedLetters.textContent = "";
+                $('#guessedLetters').text("");
                 for (i = 0; i < guessedSet.length; i++) {
                         let text = guessedSet[i].toUpperCase();
-                        guessedLetters.append(text + " ");
+                        $("#guessedLetters").append(text + " ");
 
                 }
 
@@ -129,37 +125,32 @@ const game = {
 
                         //for when matches were found
                 } else {
-                        // //Redisplay to include found letters
-                        // mysteryWordText.textContent = "";
-                        // for (i = 0; i < mysterySet.length; i++) {
-                        //         let character = mysterySet[i];
-                        //         if (mysterySet[i] === " ") {
-                        //                 mysteryWordText.append('\xa0');
-                        //         } else {
-                        //                 mysteryWordText.append(character.toUpperCase() + " ");
-                        //         }
-                        // }
                         game.display();
                         game.print(userInput);
                         game.win();
                         game.over();
                 }
 
+        },
+
+        guess: function () {
+                prompt();
         }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+//waits for page to load before performing functions
+$(document).ready(function () {
 
         //user interaction function
         document.onkeyup = function (event) {
-
+                //logs keyboard input
                 let userInput = event.key.toLowerCase();
 
                 //Check for alphabet input
                 if (userInput.match(/^[a-z]$/) && !guessedSet.includes(userInput) && gameState === true) {
-
+                        //decreases number of guesses
                         guessNum--;
-                        guessTxt.textContent = guessNum;
+                        $('#guessTxt').text(guessNum);
 
                         game.check(userInput);
                 }
