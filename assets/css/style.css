@@ -1,13 +1,36 @@
-body{
+body {
     background-image: url(../images/seamless-giraffe-pattern.jpg);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: whitesmoke;
 }
 
-.container{
-    background-color: whitesmoke;
+.outer {
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.middle{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.container {
+    background: rgb(80, 80, 80); 
+    background: rgba(80, 80, 80, 0.8);
+    margin-left: auto;
+    margin-right: auto;
     padding: 1em;
 }
 
-.keyboardRow{
+#keyboard{
+    background: transparent;
+}
+
+.keyboardRow {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -24,65 +47,74 @@ body{
     margin-right: auto;
 } */
 
-header{
-    padding: 1em;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-h1{
+h1 {
     font-size: 4em;
     margin: 1em 0em 1em 0em;
     text-align: center;
     font-weight: bold;
 }
 
-#messageText{
+#messageText {
     margin: 0em;
     text-align: center;
 }
 
-#gameText, #guessBtn{
+#gameText, #guessBtn {
     display: none;
 }
 
-#playBtn{
+#playBtn {
     display: block;
-    background-color: green;
+    background-color: limegreen;
     color: white;
     font-weight: bold;
     text-align: center;
+    border-radius: 8px;
     margin-left: auto;
     margin-right: auto;
+    border-top-color: rgb(150, 250, 150);
+    border-left-color: rgb(150, 250, 150);
+    border-bottom-color: green;
+    border-right-color: green;
 }
 
 #guessBtn {
     display: block;
-    background-color: green;
+    background-color: midnightblue;
     color: white;
     font-weight: bold;
     text-align: center;
+    border-radius: 8px;
     margin-left: auto;
     margin-right: auto;
+    border-top-color: rgb(163, 163, 230);
+    border-left-color: rgb(163, 163, 230);
+    border-bottom-color: rgb(4, 4, 60);
+    border-right-color: rgb(4, 4, 60);
+}
+
+.letterBtn {
+    color: white;
+    background-color: rgb(66, 209, 253);
+    border-radius: 4px;
+    border: none;
 }
 
 /* adjusts font size for mobile */
-@media screen and (max-width: 500px){
-    h1{
+
+@media screen and (max-width: 500px) {
+    h1 {
         font-size: 2em;
         margin: .5em 0em .5em 0em;
         text-align: center;
     }
-
-    .letterBtn{
-        margin: .1em;
+    .letterBtn {
+        margin: .08em;
+        
     }
 
-}
-
-@media screen and (max-width: 500px){
-    #messageText, .stats{
+    #messageText, .stats {
         font-size: 1em;
     }
-
 }
+

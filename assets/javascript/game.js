@@ -5,6 +5,7 @@ let winCount = 0;
 let gameState = true;
 let guessNum = 10;
 
+//object containing game functions
 const game = {
 
         //generates new word and prepares the game for play
@@ -26,6 +27,7 @@ const game = {
                 $("#keyboard").show();
                 $('#guessTxt').text("Guesses Left: "+guessNum);
                 $('#message').text("");
+                $('#message').text("Guess the Animal!");
                 $(".letterBtn").css("opacity", 1);
                 // $('#guessedLetters').text("");
 
