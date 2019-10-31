@@ -28,7 +28,6 @@ const game = {
                 $("#keyboard").show();
                 $('#guessTxt').text("Guesses Left: " + guessNum);
                 $('#message').text("");
-                $('#message').text("Guess the Animal!");
                 $(".letterBtn").css("opacity", 1);
                 // $('#guessedLetters').text("");
 

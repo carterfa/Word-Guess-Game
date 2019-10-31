@@ -13,21 +13,22 @@ body {
     width: 100%;
 }
 
-.middle{
+.middle {
     display: table-cell;
     vertical-align: middle;
 }
 
 .container {
-    background: rgb(80, 80, 80); 
+    background: rgb(80, 80, 80);
     background: rgba(80, 80, 80, 0.8);
     margin-left: auto;
     margin-right: auto;
     padding: 1em;
     border-radius: 16px;
+    width: 90%;
 }
 
-#keyboard{
+#keyboard {
     background: transparent;
 }
 
@@ -42,33 +43,46 @@ body {
     float: right;
 }
 
-
 #guessModal {
-    display: none; 
-    position: fixed; 
+    display: none;
+    position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.9);
-  }
-  
-  .modalContent {
-    margin: 15% auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modalContent {
+    margin: auto;
     padding: 20px;
     border-radius: 16px;
-    width: 85%;
-  }
-  
- #modalClose {
+    width: 40%;
+}
+
+.modalContent p {
+    margin: 0;
+}
+
+#modalClose {
     color: white;
-    display: block;
-    text-align: right;
-    font-size: 28px;
-    font-weight: bold;
- }
+    border-radius: 4px;
+    background-color: rgb(175, 20, 20);
+    border-top-color: rgb(230, 165, 165);
+    border-left-color: rgb(230, 165, 165);
+    border-bottom-color: rgb(85, 10, 10);
+    border-right-color: rgb(85, 10, 10);
+    margin-top: 1em;
+}
+
+#submitBtn {
+    background-color: darkgrey;
+    color: white;
+    border-radius: 4px;
+    margin-top: 1em;
+}
 
 /* #guessedLettersRow{
     text-align: center;
@@ -92,10 +106,8 @@ h1 {
     display: none;
 }
 
-#submitBtn {
-    background-color: darkgrey;
-    color: white;
-    border-radius: 6px;
+#animalInput {
+    margin: 0;
 }
 
 #playBtn {
@@ -148,11 +160,11 @@ h1 {
     }
     .letterBtn {
         margin: .08em;
-        
     }
-
     #messageText, .stats {
         font-size: 1em;
     }
+    .modalContent {
+        width: 85%;
+    }
 }
-

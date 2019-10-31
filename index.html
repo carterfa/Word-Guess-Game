@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Guess the Animal!</title>
+    <title>Guess the Aquatic Animal!</title>
 </head>
 
 <body>
@@ -23,21 +23,23 @@
                     </div>
                     <div class="col-4">
                         <!-- Displays dialog to user -->
-                        <h2 id="messageText"><span id="message">Guess the Animal!</span></h2>
+                        <h2 id="messageText"><span id="message">Guess the Aquatic Animal!</span></h2>
                     </div>
                     <div class="col-4">
                         <h2 class="stats"><span id="guessTxt">10</span></h2>
                     </div>
                 </div>
                 <h1>
+                    <!-- Display of mystery word -->
                     <span id="mysteryWordText"></span>
                 </h1>
                 <div id="guessModal">
                     <!-- Modal content -->
                     <div class="modalContent">
-                        <span id="modalClose">&times;</span>
-                        Enter animal's name: <input id="animalInput" type="text" name="textSubmission">
+                        <p>Enter the aquatic animal's name:</p> 
+                        <input id="animalInput" type="text" name="textSubmission">
                         <button id="submitBtn">SUBMIT</button>
+                        <button id="modalClose">CANCEL</button>
                     </div>
 
                 </div>
