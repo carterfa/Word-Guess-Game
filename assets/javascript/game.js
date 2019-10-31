@@ -4,6 +4,7 @@ let mysterySet = [];
 let winCount = 0;
 let gameState = true;
 let guessNum = 10;
+let modalActive = false;
 
 //object containing game functions
 const game = {
@@ -25,7 +26,7 @@ const game = {
                 $(".stats").show();
                 $("#guessBtn").show();
                 $("#keyboard").show();
-                $('#guessTxt').text("Guesses Left: "+guessNum);
+                $('#guessTxt').text("Guesses Left: " + guessNum);
                 $('#message').text("");
                 $('#message').text("Guess the Animal!");
                 $(".letterBtn").css("opacity", 1);
@@ -102,7 +103,7 @@ const game = {
                 if (!guessedSet.includes(userInput) && gameState === true) {
                         //decreases number of guesses
                         guessNum--;
-                        $('#guessTxt').text("Guesses Left: "+guessNum);
+                        $('#guessTxt').text("Guesses Left: " + guessNum);
 
                         game.check(userInput);
                         //if no more blanks in word run win state
@@ -130,7 +131,7 @@ const game = {
 
                 // }
 
-                $("#"+userInput).css("opacity", 0.2);
+                $("#" + userInput).css("opacity", 0.2);
         },
 
         //reviews user input to determine if wrong or correct guess
@@ -156,13 +157,19 @@ const game = {
 
         },
 
-        guess: function () {
-                animalInput = prompt("Guess the animal!");
+        guess: function (animalInput) {
+
                 if (animalInput) {
-                        if ((animalInput.toLowerCase().trim()) === mysteryWord) {
+                        if (animalInput === mysteryWord) {
                                 $('#mysteryWordText').text(mysteryWord.toUpperCase());
+                                modalActive = false;
+                                $("#guessModal").hide();
+                                $("#animalInput").val("");
                                 game.win();
                         } else {
+                                modalActive = false;
+                                $("#guessModal").hide();
+                                $("#animalInput").val("");
                                 game.over();
                         }
                 }
@@ -182,7 +189,7 @@ $(document).ready(function () {
                 //logs keyboard input
                 let userInput = event.key.toLowerCase();
                 //only allows alphabet characters
-                if (userInput.match(/^[a-z]$/)) {
+                if (userInput.match(/^[a-z]$/) && modalActive === false) {
                         game.valid(userInput);
                 }
         }
@@ -199,9 +206,26 @@ $(document).ready(function () {
                 game.play();
         })
 
-        //prompts user to guess the word
+        //opens guess the word modal
         $("#guessBtn").on("click", function () {
-                game.guess();
+                modalActive = true;
+                $("#guessModal").show();
         })
+
+        //modal submit button function
+        $("#submitBtn").on("click", function () {
+                if ($("#animalInput").val()) {
+                        animalInput = $("#animalInput").val().trim().toLowerCase();
+                        game.guess(animalInput);
+                }
+        })
+
+        //close modal function
+        $("#modalClose").on("click", function () {
+                modalActive = false;
+                $("#guessModal").hide();
+                $("#animalInput").val("");
+        })
+
 });
 

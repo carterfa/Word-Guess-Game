@@ -13,8 +13,8 @@
 </head>
 
 <body>
-<div class="outer">
-    <div class="middle">
+    <div class="outer">
+        <div class="middle">
             <div class="container">
                 <!-- displays user stats -->
                 <div class="row">
@@ -32,6 +32,15 @@
                 <h1>
                     <span id="mysteryWordText"></span>
                 </h1>
+                <div id="guessModal">
+                    <!-- Modal content -->
+                    <div class="modalContent">
+                        <span id="modalClose">&times;</span>
+                        Enter animal's name: <input id="animalInput" type="text" name="textSubmission">
+                        <button id="submitBtn">SUBMIT</button>
+                    </div>
+
+                </div>
                 <div class="container" id="keyboard">
                     <div class="row keyboardRow">
                         <h2>
@@ -79,10 +88,10 @@
                 <h2><button id="guessBtn">GUESS WORD</button></h2>
                 <!-- reset button -->
                 <h2><button id="playBtn" autofocus>PLAY</button></h2>
-        
+
             </div>
+        </div>
     </div>
-</div>
 
     <!-- link to javascript and jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
