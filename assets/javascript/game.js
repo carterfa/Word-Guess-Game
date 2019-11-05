@@ -3,7 +3,7 @@ let guessedSet = [];
 let mysterySet = [];
 let winCount = 0;
 let gameState = true;
-let guessNum = 10;
+let guessNum = 15;
 let modalActive = false;
 
 //object containing game functions
@@ -12,13 +12,13 @@ const game = {
         //generates new word and prepares the game for play
         play: function () {
                 //let wordBank = ["spider", "shark", "bear", "eagle", "rooster", "rabbit", "dog", "crab", "elephant", "tiger", "sea turtle", "kangaroo", "giant panda", "weasel", "whale", "dolphin", "giraffe", "rhino", "gorilla", "zebra"]
-                let wordBank = ["pacific spiny lumpsucker", "whale shark", "green moray eel", "bottlenose dolphin", "southern sea otter", "african penguin", "beluga", "giant pacific octopus", "weedy sea dragon", "narwhal", "zebra shark", "american lobster", "sandbar shark", "japanese spider crab", "humphead wrasse", "giant grouper", "great white shark", "southern stingray", "orca", "splendid garden eel", "blue hippo tang", "striped garden eel", "clown anemonefish", "blue crab", "lionfish", "harbor seal", "california sea lion", "walrus", "blacktip reef shark", "harlequin sweetlips", "bat sea star", "horseshoe crab", "manta ray", "blue whale", "variegated sea urchin", "giant green anemone", "longspine snipefish", "ochre sea star", "porcupine crab", "swell shark", "spotted ratfish", "threespine stickleback", "garibaldi damselfish", "california sheephead", "copper rockfish", "blackbar soldierfish", "bowmouth guitarfish", "cownose ray", "french angelfish", "giant trevally", "golden trevally", "green sea turtle", "loggerhead sea turtle", "leatherback sea turtle", "hawaiian cleaner shrimp", "leopard whipray", "longcomb sawfish", "porcupine ray", "yellow tang", "tasselled wobbegong", "spotted wobbegong", "spotted eagle ray", "tarpon", "yellowtail snapper", "spanish hogfish", "bignose unicornfish", "longnose butterfly fish", "lemonpeel angelfish", "pacific sea nettle", "white spotted jelly", "moon jelly", "eastern fiddler ray", "pajama cardinalfish", "striped burrfish", "squarespot anthias", "yellowback fusilier"]
+                let wordBank = ["pacific spiny lumpsucker", "whale shark", "green moray eel", "bottlenose dolphin", "southern sea otter", "african penguin", "beluga", "giant pacific octopus", "weedy sea dragon", "narwhal", "zebra shark", "american lobster", "sandbar shark", "japanese spider crab", "humphead wrasse", "giant grouper", "great white shark", "southern stingray", "orca", "splendid garden eel", "blue hippo tang", "striped garden eel", "clown anemonefish", "blue crab", "lionfish", "harbor seal", "california sea lion", "walrus", "blacktip reef shark", "harlequin sweetlips", "bat sea star", "horseshoe crab", "manta ray", "blue whale", "variegated sea urchin", "giant green anemone", "longspine snipefish", "ochre sea star", "porcupine crab", "swell shark", "spotted ratfish", "threespine stickleback", "garibaldi damselfish", "california sheephead", "copper rockfish", "blackbar soldierfish", "bowmouth guitarfish", "cownose ray", "french angelfish", "giant trevally", "golden trevally", "green sea turtle", "loggerhead sea turtle", "leatherback sea turtle", "hawaiian cleaner shrimp", "leopard whipray", "longcomb sawfish", "porcupine ray", "yellow tang", "tasselled wobbegong", "spotted wobbegong", "spotted eagle ray", "tarpon", "yellowtail snapper", "spanish hogfish", "bignose unicornfish", "longnose butterfly fish", "lemonpeel angelfish", "pacific sea nettle", "white spotted jelly", "moon jelly", "eastern fiddler ray", "pajama cardinalfish", "striped burrfish", "squarespot anthias", "yellowback fusilier", "humpback whale"]
                 //reset sets
                 guessedSet = [];
                 mysterySet = [];
 
                 //reset guesses
-                guessNum = 10;
+                guessNum = 15;
 
                 gameState = true;
 
@@ -49,6 +49,7 @@ const game = {
 
                 //hides button
                 $("#playBtn").hide();
+                $("#guessBtn").focus();
 
         },
 
@@ -209,6 +210,7 @@ $(document).ready(function () {
         $("#guessBtn").on("click", function () {
                 modalActive = true;
                 $("#guessModal").show();
+                $("#animalInput").focus();
         })
 
         //modal submit button function
@@ -216,6 +218,17 @@ $(document).ready(function () {
                 if ($("#animalInput").val()) {
                         animalInput = $("#animalInput").val().trim().toLowerCase();
                         game.guess(animalInput);
+                }
+        })
+
+        //press enter to submit 
+        $("#animalInput").keydown(function (event) {
+                if (event.which == 13) {
+                        if ($("#animalInput").val()) {
+                                animalInput = $("#animalInput").val().trim().toLowerCase();
+                                game.guess(animalInput);
+                        }
+                        event.preventDefault();
                 }
         })
 
