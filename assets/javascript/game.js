@@ -3,7 +3,7 @@ let guessedSet = [];
 let mysterySet = [];
 let winCount = 0;
 let gameState = true;
-let guessNum = 15;
+let guessNum = 10;
 let modalActive = false;
 
 //object containing game functions
@@ -18,7 +18,7 @@ const game = {
                 mysterySet = [];
 
                 //reset guesses
-                guessNum = 15;
+                guessNum = 10;
 
                 gameState = true;
 

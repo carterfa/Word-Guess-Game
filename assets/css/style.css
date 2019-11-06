@@ -1,5 +1,8 @@
 body {
-    background-image: url(../images/seamless-giraffe-pattern.jpg);
+    background-image: url(../images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: whitesmoke;
 }
@@ -92,7 +95,7 @@ body {
 
 h1 {
     font-size: 4em;
-    margin: 1em 0em 1em 0em;
+    margin: .25em 0em .25em 0em;
     text-align: center;
     font-weight: bold;
 }
