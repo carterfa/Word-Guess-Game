@@ -1,7 +1,7 @@
 //establishes global variables
 let guessedSet = [];
 let mysterySet = [];
-let winCount = 0;
+let scoreCount = 0;
 let gameState = true;
 let guessNum = 10;
 let modalActive = false;
@@ -74,8 +74,22 @@ const game = {
 
         //checks to see if player won and if so displays dialog
         win: function () {
-                winCount++;
-                totalWins.textContent = winCount;
+
+                let guessTotal = guessedSet.length;
+
+                if (guessTotal <= 3 ){
+                        scoreCount += 200;
+                }
+
+                if (guessTotal > 3 && guessTotal < 7){
+                        scoreCount += 100;
+                }
+
+                if (guessTotal >= 7){
+                        scoreCount += 50;
+                }
+
+                totalScore.textContent = scoreCount;
                 $("#message").text("YOU WIN!");
                 $("#playBtn").show();
                 $("#playBtn").focus();
