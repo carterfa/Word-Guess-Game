@@ -75,6 +75,12 @@ const game = {
         //checks to see if player won and if so displays dialog
         win: function () {
 
+                $("#resultText").html("&#9989;");
+                $("#resultModal").show();
+
+                setTimeout(function(){ 
+                        $("#resultModal").hide(); }, 2000);
+
                 let guessTotal = guessedSet.length;
 
                 if (guessTotal <= 3 ){
@@ -100,6 +106,13 @@ const game = {
 
         //checks to see if player lost and if so displays dialog
         over: function () {
+
+                $("#resultText").html("&#10060;");
+                $("#resultModal").show();
+
+                setTimeout(function(){ 
+                        $("#resultModal").hide(); }, 2000);
+
                 $('#mysteryWordText').text(mysteryWord.toUpperCase());
                 $("#message").text("GAME OVER!");
                 $("#playBtn").show();
@@ -194,6 +207,7 @@ const game = {
 $(document).ready(function () {
 
         //hides buttons on initial startup
+        $("#resultModal").hide();
         $("#keyboard").hide();
         $("#guessBtn").hide();
         $(".stats").hide();

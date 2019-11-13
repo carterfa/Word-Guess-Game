@@ -33,8 +33,10 @@
                     <!-- Display of mystery word -->
                     <span id="mysteryWordText"></span>
                 </h1>
-                <div id="guessModal">
-                    <!-- Modal content -->
+
+                 <!-- Guess submission modal -->
+                <div class="modal" id="guessModal">
+                   
                     <div class="modalContent">
                         <p>Enter the ocean animal's name:</p> 
                         <input id="animalInput" type="text" name="textSubmission">
@@ -42,6 +44,12 @@
                         <button id="modalClose">CANCEL</button>
                     </div>
 
+                </div>
+
+                <div class="modal" id="resultModal">
+                    <div id="resultContent">
+                        <h1 id="resultText"></h1>
+                    </div>
                 </div>
 
                 <!-- Keyboard buttons -->
