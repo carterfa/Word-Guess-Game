@@ -1,11 +1,18 @@
-body {
+html {
     background-image: url(../images/background.jpg);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-position: bottom;
     background-attachment: fixed;
-    background-position: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: whitesmoke;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .outer {
