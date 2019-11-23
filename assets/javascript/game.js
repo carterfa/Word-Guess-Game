@@ -3,7 +3,7 @@ let guessedSet = [];
 let mysterySet = [];
 let scoreCount = 0;
 let gameState = true;
-let guessNum = 10;
+let guessNum = 15;
 let modalActive = false;
 
 //object containing game functions
@@ -11,14 +11,16 @@ const game = {
 
         //generates new word and prepares the game for play
         play: function () {
-                //let wordBank = ["spider", "shark", "bear", "eagle", "rooster", "rabbit", "dog", "crab", "elephant", "tiger", "sea turtle", "kangaroo", "giant panda", "weasel", "whale", "dolphin", "giraffe", "rhino", "gorilla", "zebra"]
-                let wordBank = ["pacific spiny lumpsucker", "whale shark", "green moray eel", "bottlenose dolphin", "southern sea otter", "african penguin", "beluga", "giant pacific octopus", "weedy sea dragon", "narwhal", "zebra shark", "american lobster", "sandbar shark", "japanese spider crab", "humphead wrasse", "giant grouper", "great white shark", "southern stingray", "orca", "splendid garden eel", "blue hippo tang", "striped garden eel", "clown anemonefish", "blue crab", "lionfish", "harbor seal", "california sea lion", "walrus", "blacktip reef shark", "harlequin sweetlips", "bat sea star", "horseshoe crab", "manta ray", "blue whale", "variegated sea urchin", "giant green anemone", "longspine snipefish", "ochre sea star", "porcupine crab", "swell shark", "spotted ratfish", "threespine stickleback", "garibaldi damselfish", "california sheephead", "copper rockfish", "blackbar soldierfish", "bowmouth guitarfish", "cownose ray", "french angelfish", "giant trevally", "golden trevally", "green sea turtle", "loggerhead sea turtle", "leatherback sea turtle", "hawaiian cleaner shrimp", "leopard whipray", "longcomb sawfish", "porcupine ray", "yellow tang", "tasseled wobbegong", "spotted wobbegong", "spotted eagle ray", "tarpon", "yellowtail snapper", "spanish hogfish", "bignose unicornfish", "longnose butterfly fish", "lemonpeel angelfish", "pacific sea nettle", "white spotted jelly", "moon jelly", "eastern fiddler ray", "pajama cardinalfish", "striped burrfish", "squarespot anthias", "yellowback fusilier", "humpback whale", "right whale"]
+
+                const wordSet = new Set(["pacific spiny lumpsucker", "whale shark", "green moray eel", "bottlenose dolphin", "southern sea otter", "african penguin", "beluga", "giant pacific octopus", "weedy sea dragon", "narwhal", "zebra shark", "american lobster", "sandbar shark", "japanese spider crab", "humphead wrasse", "giant grouper", "great white shark", "southern stingray", "orca", "splendid garden eel", "blue hippo tang", "striped garden eel", "clown anemonefish", "blue crab", "lionfish", "harbor seal", "california sea lion", "walrus", "blacktip reef shark", "harlequin sweetlips", "bat sea star", "horseshoe crab", "manta ray", "blue whale", "variegated sea urchin", "giant green anemone", "longspine snipefish", "ochre sea star", "porcupine crab", "swell shark", "spotted ratfish", "threespine stickleback", "garibaldi damselfish", "california sheephead", "copper rockfish", "blackbar soldierfish", "bowmouth guitarfish", "cownose ray", "french angelfish", "giant trevally", "golden trevally", "green sea turtle", "loggerhead sea turtle", "leatherback sea turtle", "hawaiian cleaner shrimp", "leopard whipray", "longcomb sawfish", "porcupine ray", "yellow tang", "tasseled wobbegong", "spotted wobbegong", "spotted eagle ray", "tarpon", "yellowtail snapper", "spanish hogfish", "bignose unicornfish", "longnose butterfly fish", "lemonpeel angelfish", "pacific sea nettle", "white spotted jelly", "moon jelly", "eastern fiddler ray", "pajama cardinalfish", "striped burrfish", "squarespot anthias", "yellowback fusilier", "humpback whale", "right whale"]);
+                const wordBank = Array.from(wordSet);
+
                 //reset sets
                 guessedSet = [];
                 mysterySet = [];
 
                 //reset guesses
-                guessNum = 10;
+                guessNum = 15;
 
                 gameState = true;
 
@@ -55,15 +57,21 @@ const game = {
 
         //displays the contents of the mystery array
         display: function () {
-
+                let wordlength = 0;
                 //Displays contents of array
                 $('#mysteryWordText').text("");
                 for (i = 0; i < mysterySet.length; i++) {
                         let character = mysterySet[i];
-                        if (mysterySet[i] === " ") {
+                        wordlength++;
+                        if (character === " ") {
                                 //displays space in case of animal name with 2 words
-                                //$('#mysteryWordText').append('\xa0');
-                                $('#mysteryWordText').append("</br>");
+                                if (wordlength <= 5) {
+                                        $('#mysteryWordText').append("&nbsp;");
+                                        wordlength = 0;
+                                } else {
+                                        $('#mysteryWordText').append("</br>");
+                                        wordlength = 0;
+                                }
                         } else {
                                 $('#mysteryWordText').append(character.toUpperCase() + " ");
                         }
@@ -78,20 +86,21 @@ const game = {
                 $("#resultText").html("&#9989;");
                 $("#resultModal").show();
 
-                setTimeout(function(){ 
-                        $("#resultModal").hide(); }, 2000);
+                setTimeout(function () {
+                        $("#resultModal").hide();
+                }, 2000);
 
                 let guessTotal = guessedSet.length;
 
-                if (guessTotal <= 3 ){
+                if (guessTotal <= 3) {
                         scoreCount += 200;
                 }
 
-                if (guessTotal > 3 && guessTotal < 7){
+                if (guessTotal > 3 && guessTotal < 7) {
                         scoreCount += 100;
                 }
 
-                if (guessTotal >= 7){
+                if (guessTotal >= 7) {
                         scoreCount += 50;
                 }
 
@@ -110,8 +119,9 @@ const game = {
                 $("#resultText").html("&#10060;");
                 $("#resultModal").show();
 
-                setTimeout(function(){ 
-                        $("#resultModal").hide(); }, 2000);
+                setTimeout(function () {
+                        $("#resultModal").hide();
+                }, 2000);
 
                 $('#mysteryWordText').text(mysteryWord.toUpperCase());
                 $("#message").text("GAME OVER!");

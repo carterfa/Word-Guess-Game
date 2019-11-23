@@ -8,7 +8,6 @@ html {
     -o-background-size: cover;
     background-size: cover;
     height: 100%;
-    overflow: hidden;
 }
 
 body {
@@ -39,6 +38,8 @@ color: white;
     background: rgba(80, 80, 80, 0.8);
     margin-left: auto;
     margin-right: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
     padding: 1em;
     border-radius: 16px;
     width: 90%;
@@ -46,6 +47,8 @@ color: white;
 
 #keyboard {
     background: transparent;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .keyboardRow {
@@ -169,6 +172,11 @@ h1 {
 
 .keyBrk0{
     display: block;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 2px 2px 5px black; 
 }
 
 /* adjusts font size for mobile */
