@@ -2,9 +2,7 @@
 
 ## Overview
 
-This game was created during Georgia Tech's Coding Boot Camp program in 2019.
-
-[Given Instructions](homework-instructions.md)
+A browser game that uses HTML, CSS, JavaScript within the Bootstrap CSS Framework.
 
 ## How to Play
 
