@@ -1,4 +1,4 @@
-## Word Guess Game
+## Sea Animal Guessing Game
 
 ### Overview
 
