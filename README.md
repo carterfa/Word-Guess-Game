@@ -1,5 +1,7 @@
 ## Sea Animal Guessing Game
 
+![Screenshot](./screenshots/seaanimalguess.jpg)
+
 ### Overview
 
 A browser game that uses HTML, CSS, JavaScript within the Bootstrap CSS Framework.
